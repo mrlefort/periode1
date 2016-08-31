@@ -137,7 +137,7 @@ handleNumArrays3(a,function(res){
 })
 
 
-console.log("hoisting");
+console.log("Opgave 5, Hoisting (Hosting)");
 
 var a2 = 5;
 
@@ -150,3 +150,142 @@ var hoisting = function(){
 hoisting();
 
 var b2 = 4;
+
+function HostHost(){
+    llama();
+    Spider();
+
+    function llama(){
+        console.log("I'm a llama");
+    }
+
+
+/*
+    ///////// Her ser vi at en variables decleration er ikke komplet hoisted.
+    var Spider = function(){
+        console.log("And i'm spiderman");
+
+    }
+    */
+
+
+     function Spider(){
+        console.log("And i'm spiderman");
+    }
+}
+
+HostHost();
+
+
+function fff1()
+{
+
+
+    (function(){
+        var txt = "Hello World";
+        console.log(txt);  //OK
+    })();
+
+    // console.log(txt);  //Throws an error
+
+
+    (function(){ // private function ?
+
+        console.log("I can only be run ONCE bitch. " + a())
+        function a ()
+        {
+          console.log("functions are also hoisted inside a IIFE")
+            return "assllama";
+        }
+
+
+    })();
+    console.log(a);
+
+
+
+}
+
+console.log(fff1())
+
+
+console.log("Opgave 8 - Object (1)")
+console.log("")
+
+var object = {name: "lars", køn: "mand", smart: true, efternavn: "hello", tolvtaltileksammen : true}
+
+
+for(var x in object)
+{
+    var y33 = object[x];
+   console.log(y33);
+}
+console.log("")
+delete object.smart
+console.log("")
+for(var x in object)
+{
+    var y33 = object[x];
+    console.log(y33);
+}
+console.log("")
+console.log(object.hasOwnProperty("smart"));
+console.log("Opgave 8 - Object (2)")
+function create(fn, ln, age)
+{
+var person = {firstname : fn, lastname : ln, age : age}
+    return person;
+}
+
+var myperson = create("seb", "ryb", 50)
+console.log("asdf - " + myperson.firstname)
+
+function getpers(person) {
+
+    for(var x in person)
+    {
+        var y33 = person[x];
+        console.log(x + " - " + y33);
+    }
+
+}
+
+getpers(myperson);
+
+
+console.log("")
+
+function listAllProperties(o) {
+    var objectToInspect;
+    var result = [];
+
+    for(objectToInspect = o; objectToInspect !== null; objectToInspect = Object.getPrototypeOf(objectToInspect)){
+        result = result.concat(Object.getOwnPropertyNames(objectToInspect));
+    }
+
+    return result;
+}
+console.log("")
+console.log(listAllProperties(myperson));
+console.log("")
+delete myperson.age
+console.log("")
+console.log(listAllProperties(myperson));
+console.log("")
+
+var makeCounter = function() {
+    var privateCounter = 0;
+    function changeBy(val) {
+        privateCounter += val;
+    }
+    return {
+        increment: function() {changeBy(1);},
+        decrement: function() {changeBy(-1);},
+        value: function() { return privateCounter;}
+    }
+};
+var counter1 = makeCounter();
+var counter2 = makeCounter();
+//counter1.increment();
+//counter1.increment();
+//lert(counter1.value()); /* Alerts 2 */
