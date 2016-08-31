@@ -135,3 +135,18 @@ function handleNumArrays3(a, callback){
 handleNumArrays3(a,function(res){
     console.log(res.join(","));
 })
+
+
+console.log("hoisting");
+
+var a2 = 5;
+
+
+var hoisting = function(){
+    var c2 = a2+b2;
+    console.log("a2 is: " + a2 + " b2 is: " + b2 + " c2 is: " + c2)
+
+}
+hoisting();
+
+var b2 = 4;
